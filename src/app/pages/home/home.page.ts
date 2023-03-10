@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user?: User | null;
+  user?: User | null; //Esiste un modo migliore per fare questa cosa ma per ora lo facciamo così
 
   constructor(
     private userService: UserService,
@@ -22,13 +22,20 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    //quando il componente si inizializza chiamo l'api
     this.userService
       .getUser()
-      .pipe(tap((response) => (this.user = response)))
-      .subscribe();
+      .pipe(
+        tap((response) => {
+          this.user = response; //e come side effect se la chiamata va a buon fine assegno la proprietà user della nostra classe HomePage
+        })
+      )
+      .subscribe(); //ricorda sempre il subscribe sennò non parte la chiamata
+    //ricorda che come buona prassi non va messa logica nel subscribe (per una questione di stile principalmente)
   }
 
   async askForLogout() {
+    //mostro l'alert come nella doc di IOnic
     const alert = await this.alertController.create({
       header: 'Info',
       message: 'Are you sure?',
@@ -41,6 +48,7 @@ export class HomePage implements OnInit {
           text: 'OK',
           role: 'confirm',
           handler: () => {
+            //questa arrow function contiene la funzione che viene chiamata se l'utente clicca su OK
             this.logout();
           },
         },
@@ -52,12 +60,13 @@ export class HomePage implements OnInit {
 
   private logout() {
     this.authService
-      .logout()
+      .logout() //chiamo l'eventuale api (in questo caso non c'era ma ho scritto il codice facendo finta che ci fosse)
       .pipe(
         tap(() => {
-          this.router.navigateByUrl('login');
+          this.router.navigateByUrl('login'); //e come side effect ritorno al login se va tutto a buon fine
         })
       )
-      .subscribe();
+      .subscribe(); //ricorda sempre il subscribe sennò non parte la chiamata
+    //ricorda che come buona prassi non va messa logica nel subscribe (per una questione di stile principalmente)
   }
 }

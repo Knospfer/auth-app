@@ -7,25 +7,31 @@
 <ion-content class="ion-padding">
   <h1 class="title">Login</h1>
   <form [formGroup]="form">
+    <!--con [formGroup]="form" collego il form del ts all'html-->
     <ion-item>
       <ion-label position="floating">Username</ion-label>
+      <!--Con formControlName="username" collego il formControl username all'input. ATTENZIONE per usare questa direttiva devi imporare nel modulo del componente ReactiveFormModule!-->
       <ion-input
         placeholder="Enter username"
         formControlName="username"
       ></ion-input>
+      <!--*ngIf="form.dirty" serve per mostrare l'errore solo quando il form è stato modificato dall'utente o ha dei valori di default-->
       <ion-note slot="error" *ngIf="form.dirty">Field required</ion-note>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password</ion-label>
+      <!--Con formControlName="password" collego il formControl password all'input. ATTENZIONE per usare questa direttiva devi imporare nel modulo del componente ReactiveFormModule!-->
       <ion-input
         placeholder="Enter password"
         formControlName="password"
       ></ion-input>
+      <!--*ngIf="form.dirty" serve per mostrare l'errore solo quando il form è stato modificato dall'utente o ha dei valori di default-->
       <ion-note slot="error" *ngIf="form.dirty">Field required</ion-note>
     </ion-item>
 
     <div class="button-wrapper">
+      <!--Disabilito il bottone se il form non è valido, una cosa carina e facile da fare-->
       <ion-button [disabled]="form.invalid" (click)="login()">Go!</ion-button>
     </div>
   </form>

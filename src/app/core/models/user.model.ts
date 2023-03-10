@@ -1,3 +1,4 @@
+//Ho preso questa inerfaccia enorme dalla chiamata api che ho usato
 export interface User {
   id: number;
   firstName: string;

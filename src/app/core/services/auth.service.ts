@@ -17,7 +17,7 @@ export class AuthService {
     password: string
   ): Observable<AuthResponse | null> {
     return this.http
-      .post<AuthResponse>(`${environment.apiUrl}/auth/login`, {
+      .post<AuthResponse>(`${environment.apiUrl}/auth/login`, { //OCCHIO al backtick, non si può fare su windows con la tastiera italiana ma in js/ts è molto comodo per comporre le stringhe al posto del classico +
         username,
         password,
         expiresInMins: 1,

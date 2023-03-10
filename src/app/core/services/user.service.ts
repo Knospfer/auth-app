@@ -13,7 +13,7 @@ export class UserService {
   ) {}
 
   getUser(): Observable<User | null> {
-    const id = this.persistenceService.getUserId();
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    const id = this.persistenceService.getUserId(); //per come sono fatte le api che ho usato mi serve l'id dell'utente per prendere tutti i suoi dati
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}`); //OCCHIO al backtick, non si può fare su windows con la tastiera italiana ma in js/ts è molto comodo per comporre le stringhe al posto del classico +
   }
 }

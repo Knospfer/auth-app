@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!--ngIf else, mostro il contenuto dell' ngIf se la condizione è vera, altrimenti mostro il contenuto dell'ng-template col tag loading se la condizione è falsa-->
   <div class="user-data" *ngIf="user; else loading">
     <p>Hi {{user.firstName}} {{user.lastName}}!</p>
 
@@ -21,6 +22,7 @@
   </div>
 </ion-content>
 
+<!--è importante ricordarsi di mettere il nome giusto sennò non viene mai mostrato, #loading in questo caso-->
 <ng-template #loading>
   <div class="loading-wrapper">
     <ion-item>
