@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="user-data" *ngIf="user; else loading">
+    <p>Hi {{user.firstName}} {{user.lastName}}!</p>
+
+    <p>Here's your data:</p>
+    <p>age: {{user.age}}</p>
+    <p>gender: {{user.gender}}</p>
+    <p>email: {{user.email}}</p>
+    <p>phone: {{user.phone}}</p>
+    <p>birthDate: {{user.birthDate}}</p>
+
+    <div class="button-wrapper">
+      <ion-button (click)="askForLogout()">Logout</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #loading>
+  <div class="loading-wrapper">
+    <ion-item>
+      <ion-label>Loading..</ion-label>
+      <ion-spinner name="crescent"></ion-spinner>
+    </ion-item>
+  </div>
+</ng-template>
